@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+     {% block title %}
+        {{title}}-Agri-Estate
+     {% endblock title %}</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body> 
+      <!-- Navigation Bar -->
+  
+      <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+        <div class="container">
+          <!-- Logo and Brand Name -->
+          <a class="navbar-brand d-flex align-items-center" href="{{ url_for('Home') }}">
+            <img src="logo.png" width="35" height="35" class="me-2">
+            <strong>Agri E-State</strong>
+          </a>
+          <!-- Mobile Hamburger Menu -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Navbar Links -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link {% if request.endpoint == 'Home' %}active{% endif %}" href="{{ url_for('Home') }}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.endpoint == 'features' %}active{% endif %}" href="{{ url_for('features') }}">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.endpoint == 'marketplace' %}active{% endif %}" href="{{ url_for('marketplace') }}">Marketplace</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.endpoint == 'research_data' %}active{% endif %}" href="{{ url_for('research_data') }}">Research Data</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.endpoint == 'student_zone' %}active{% endif %}" href="{{ url_for('student_zone') }}">Student Zone</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.endpoint == 'contact' %}active{% endif %}" href="{{ url_for('contact') }}">Contact</a>
+              </li>
+            </ul>
+            <!-- Login and Register Buttons (Spacing Added) -->
+            <ul class="navbar-nav signup">
+              <li class="nav-item">
+                <a class="btn btn-outline-light btn-sm ms-2" href="{{ url_for('Home') }}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-warning btn-sm ms-2" href="{{ url_for('Home') }}">Register</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+    {% block body %}
+        
+    {% endblock body %}
+</body>
+</html>
