@@ -1,39 +1,46 @@
 {% extends 'layout.html' %}
 {% block body %}
     
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <!-- Product Card -->
-      <div class="col-md-4">
-        <div class="card product-card">
-          <!-- Image Section -->
-          <div class="card-img-container">
-            <img src="https://foodfornet.com/wp-content/uploads/Fresh-red-apples-and-a-few-apple-halves-in-a-pile.jpg" class="card-img-top" alt="Fresh Apples">
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    {% for product in products %}
+    <!-- Product Card -->
+    <div class="col-md-4">
+      <div class="card product-card">
+        <!-- Image Section -->
+        <div class="card-img-container">
+          <img src="{{ product.image_url or 'https://via.placeholder.com/150' }}" class="card-img-top" alt="{{ product.name }}">
+        </div>
+        <!-- Product Details -->
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text text-muted">{{ product.description }}</p>
+          <!-- Rating -->
+          <div class="rating mb-3">
+            {% for i in range(1, 6) %}
+              {% if product.rating and i <= product.rating %}
+                <i class="fas fa-star"></i>
+              {% elif product.rating and i == product.rating|round %}
+                <i class="fas fa-star-half-alt"></i>
+              {% else %}
+                <i class="far fa-star"></i>
+              {% endif %}
+            {% endfor %}
+            <span class="text-muted ms-2">({{ product.rating or 'N/A' }}/5)</span>
           </div>
-          <!-- Product Details -->
-          <div class="card-body text-center">
-            <h5 class="card-title">Fresh Apples</h5>
-            <p class="card-text text-muted">Crisp, juicy, and sweet apples freshly picked from organic farms.</p>
-            <!-- Rating -->
-            <div class="rating mb-3">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-              <i class="far fa-star"></i>
-              <span class="text-muted ms-2">(3.5/5)</span>
+          <!-- Price and Add to Cart -->
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span class="price">${{ product.price }}</span>
+              <span class="unit">/ kg</span>
             </div>
-            <!-- Price and Add to Cart -->
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <span class="price">$2.99</span>
-                <span class="unit">/ kg</span>
-              </div>
-              <a href="#" class="btn btn-buy btn-success btn-sm">Add to Cart</a>
-            </div>
+            <a href="#" class="btn btn-buy btn-success btn-sm">Add to Cart</a>
           </div>
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
+</div>
+
 {% endblock body %}
