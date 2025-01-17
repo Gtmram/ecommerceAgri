@@ -4,12 +4,12 @@ from app import app, db, Product  # Import the app, db, and Product model
 with app.app_context():
     # Create a new product instance
     new_product = Product(
-        name="Fresh Apples", 
-        price=3, 
+        name="Fresh Cauliflower", 
+        price=6, 
         description="Crisp, juicy, and sweet apples freshly picked from organic farms.", 
-        rating=4,
+        rating=0,
         in_stock=True,
-        image_url="https://foodfornet.com/wp-content/uploads/Fresh-red-apples-and-a-few-apple-halves-in-a-pile.jpg"
+        image_url="https://th.bing.com/th/id/R.0d1381daaca3c82b3c2e7584cf6b938b?rik=Y3XEuT0DCrwI1Q&pid=ImgRaw&r=0"
     )
 
     # Add the product to the session
