@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 {% block body %}
-    
-<div class="container mt-5">
-  <div class="row justify-content-center">
+  
+<div class="container-fluid mt-1 ">
+  <div class="row">
     {% for product in products %}
     <!-- Product Card -->
-    <div class="col-md-4">
+    <div class="col-md-2 mb-3 ml">
       <div class="card product-card">
         <!-- Image Section -->
         <div class="card-img-container">
@@ -17,17 +17,22 @@
           <p class="card-text text-muted">{{ product.description }}</p>
           <!-- Rating -->
           <div class="rating mb-3">
-            {% for i in range(1, 6) %}
-              {% if product.rating and i <= product.rating %}
-                <i class="fas fa-star"></i>
-              {% elif product.rating and i == product.rating|round %}
-                <i class="fas fa-star-half-alt"></i>
-              {% else %}
-                <i class="far fa-star"></i>
-              {% endif %}
-            {% endfor %}
-            <span class="text-muted ms-2">({{ product.rating or 'N/A' }}/5)</span>
-          </div>
+            {% if product.rating %}
+                {% for i in range(1, 6) %}
+                    {% if i <= product.rating %}
+                        <i class="fas fa-star"></i>  <!-- Full Star -->
+                    {% elif i - 0.5 == product.rating %}
+                        <i class="fas fa-star-half-alt"></i>  <!-- Half Star -->
+                    {% else %}
+                        <i class="far fa-star"></i>  <!-- Empty Star -->
+                    {% endif %}
+                {% endfor %}
+                <span class="text-muted ms-2">({{ product.rating or 'N/A' }}/5)</span>
+            {% else %}
+                <p class="red">No Rating Available</p>  <!-- Show this if no rating is available -->
+            {% endif %}
+        </div>
+        
           <!-- Price and Add to Cart -->
           <div class="d-flex justify-content-between align-items-center">
             <div>

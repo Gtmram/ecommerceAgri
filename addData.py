@@ -5,9 +5,9 @@ with app.app_context():
     # Create a new product instance
     new_product = Product(
         name="Fresh Apples", 
-        price=5, 
+        price=3, 
         description="Crisp, juicy, and sweet apples freshly picked from organic farms.", 
-        rating=4.5, 
+        rating=4,
         in_stock=True,
         image_url="https://foodfornet.com/wp-content/uploads/Fresh-red-apples-and-a-few-apple-halves-in-a-pile.jpg"
     )
